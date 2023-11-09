@@ -7,7 +7,7 @@ scenarios:
         Co2L0.75,
       ]
     ll: [vopt]
-    scope: "total" # "urban", "rural", or "total" 
+    scope: "total" # "urban", "rural", or "total"
 
 run:
   name: "" # use this to keep track of runs with different settings
@@ -25,13 +25,13 @@ offshore_shape:
     weathergov: "https://www.weather.gov/source/gis/Shapefiles/WSOM/oz22mr22.zip"
     # nrel: "geodata_repo/Offshore_Wind_Speed_90m/Offshore_Wind_Speed_90m.shp"
 
-balancing_area_gis: 
+balancing_area_gis:
   path: "repo_data/BA_shapes_new/Modified_BE_BA_Shapes.shp"
 
 #TODO: #19 remove config list of BA's and reference geojson values directly instead
-countries: [US]  
+countries: [US]
 
-# focus_weights: 
+# focus_weights:
 #   CISO-PGAE: 0.5
 
 # TODO: #11 change load data and generator data to be a snakemake wildcard value
@@ -73,7 +73,7 @@ atlite:
       dy: 0.3
 
 
-electricity: 
+electricity:
   conventional_carriers: [nuclear, oil, OCGT, CCGT, coal, geothermal] # Choose the conventional plant types to include in network
   renewable_carriers: [onwind, solar, offwind, hydro] # Choose the renewable plant types to include in network
   voltages: [230., 345., 500., 765.] #remove
@@ -122,7 +122,7 @@ renewable: #build_renewable_profiles configurations
       # 200 - Open sea
       grid_codes: [20, 30, 40, 60, 100, 111, 112, 113, 114, 115, 116, 121, 122, 123, 124, 125, 126]
       distance: 10 #buffer from distance_grid_codes that are to be excluded
-      distance_grid_codes: [50] 
+      distance_grid_codes: [50]
     natura: true
     potential: simple # or conservative
     clip_p_max_pu: 1.e-2
@@ -187,7 +187,7 @@ renewable: #build_renewable_profiles configurations
 
 lines:
   types: # All temporary values, need to be updated
-    115.: "Al/St 240/40 2-bundle 220.0" 
+    115.: "Al/St 240/40 2-bundle 220.0"
     138.: "Al/St 240/40 2-bundle 220.0"
     161.: "Al/St 240/40 2-bundle 220.0"
     230.: "Al/St 240/40 2-bundle 220.0"
@@ -214,7 +214,7 @@ load:
 
 
 costs:  # based on the potentials, assuming  (0.1 kW/m2 and 10 m2/person)
-  year: 2030 
+  year: 2030
   version: v0.6.0
   rooftop_share: 0.14
   fill_values:
@@ -268,6 +268,7 @@ clustering:
 
 solving:
   options:
+    use_transport_model: true
     operations_only: true
     formulation: kirchhoff
     load_shedding: true
@@ -373,4 +374,3 @@ plotting:
     H2: "Hydrogen Storage"
     lines: "Transmission Lines"
     ror: "Run of River"
-
